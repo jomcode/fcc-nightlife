@@ -1,13 +1,10 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router';
 
 import { AppComponent } from './app/app.component';
 
 function main(initialHmrState?: any): Promise<any> {
-  return bootstrap(AppComponent, [
-    ROUTER_PROVIDERS
-  ])
+  return bootstrap(AppComponent)
   .catch((err: any) => console.error(err));
 }
 

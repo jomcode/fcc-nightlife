@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Routes, Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Routes, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router';
 
 import { HomeComponent } from './home';
 import { YelpService } from './home/yelp';
@@ -7,6 +7,7 @@ import { YelpService } from './home/yelp';
 @Component({
   directives: [ ROUTER_DIRECTIVES ],
   providers: [
+    ROUTER_PROVIDERS,
     YelpService
   ],
   selector: 'sg-app',

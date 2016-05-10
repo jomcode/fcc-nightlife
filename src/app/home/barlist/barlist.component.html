@@ -1,3 +1,9 @@
 <div>
-  barlist.component.html
+  <div *ngIf="bars">
+    <ul>
+      <li *ngFor="let bar of bars">
+        {{bar.id}} {{bar.name}} {{bar.description}} {{bar.numberGoing}}
+      </li>
+    </ul>
+  </div>
 </div>

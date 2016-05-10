@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   ],
   template: require('./bardetail.component.html')
 })
-class BarDetailComponent {}
+class BarDetailComponent {
+  constructor() {
+    //
+  }
+}
 
 export { BarDetailComponent };

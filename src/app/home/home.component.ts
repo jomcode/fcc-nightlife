@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BarListComponent } from './barlist';
 import { YelpService } from './yelp';
 
 @Component({
+  directives: [
+    BarListComponent
+  ],
   selector: 'sg-home',
   styles: [
     require('./home.component.scss')
@@ -18,13 +22,13 @@ class HomeComponent implements OnInit {
     //
   }
 
-  private _getBars(query: string): Promise<Array<any>> {
-    return this._yelpService.getBars(query);
-  }
-
   public ngOnInit(): void {
     //
     this._getBars('').then((b: Array<any>) => this.yelpResults = b.slice(0));
+  }
+
+  private _getBars(query: string): Promise<Array<any>> {
+    return this._yelpService.getBars(query);
   }
 }
 

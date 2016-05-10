@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sg-barlist',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   template: require('./barlist.component.html')
 })
 class BarListComponent {
+  @Input() public bars: Array<any>;
+
   constructor() {
     //
   }
