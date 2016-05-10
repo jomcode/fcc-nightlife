@@ -1,0 +1,124 @@
+{
+  "name": "ng2bp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tslint": "tslint",
+    "typings": "typings",
+
+    "lint": "tslint src/**/*.ts",
+
+    "dev": "better-npm-run dev",
+    "dev:hot": "better-npm-run dev:hot",
+
+    "build": "better-npm-run build",
+
+    "pretest": "npm run lint",
+    "test": "better-npm-run test",
+    "test:watch": "better-npm-run test:watch",
+
+    "webdriver:update": "webdriver-manager update",
+    "webdriver:start": "webdriver-manager start",
+
+    "pree2e": "npm run webdriver:update -- --standalone",
+    "e2e": "better-npm-run e2e"
+  },
+  "betterScripts": {
+    "dev": {
+      "command": "webpack-dev-server",
+      "env": {
+        "NODE_ENV": "development",
+        "HMR": "disabled"
+      }
+    },
+    "dev:hot": {
+      "command": "webpack-dev-server",
+      "env": {
+        "NODE_ENV": "development",
+        "HMR": "enabled"
+      }
+    },
+    "build": {
+      "command": "webpack",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "test": {
+      "command": "karma start",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test:watch": {
+      "command": "karma start --auto-watch --no-single-run",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "e2e": {
+      "command": "protractor",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    }
+  },
+  "keywords": [],
+  "author": "John <jomcode@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "angular2-hmr": "^0.6.0",
+    "autoprefixer": "^6.3.6",
+    "awesome-typescript-loader": "^0.17.0",
+    "better-npm-run": "0.0.8",
+    "clean-webpack-plugin": "^0.1.9",
+    "codelyzer": "0.0.19",
+    "concurrently": "^2.0.0",
+    "copy-webpack-plugin": "^2.1.3",
+    "css-loader": "^0.23.1",
+    "dotenv": "^2.0.0",
+    "es6-promise-loader": "^1.0.1",
+    "html-webpack-plugin": "^2.16.1",
+    "jasmine-core": "^2.4.1",
+    "json-loader": "^0.5.4",
+    "karma": "^0.13.22",
+    "karma-coverage": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.0.3",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "node-sass": "^3.7.0",
+    "parse5": "^2.1.5",
+    "phantomjs-prebuilt": "^2.1.7",
+    "postcss-loader": "^0.9.1",
+    "protractor": "^3.3.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^3.2.0",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "to-string-loader": "^1.1.4",
+    "ts-helpers": "^1.1.1",
+    "ts-node": "^0.7.2",
+    "tslint": "^3.9.0",
+    "tslint-loader": "^2.1.4",
+    "typedoc": "^0.3.12",
+    "typings": "^0.8.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "@angular/common": "^2.0.0-rc.1",
+    "@angular/compiler": "^2.0.0-rc.1",
+    "@angular/core": "^2.0.0-rc.1",
+    "@angular/http": "^2.0.0-rc.1",
+    "@angular/platform-browser": "^2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
+    "@angular/platform-server": "^2.0.0-rc.1",
+    "@angular/router": "^2.0.0-rc.1",
+    "core-js": "^2.3.0",
+    "rxjs": "^5.0.0-beta.6",
+    "zone.js": "^0.6.12"
+  }
+}
