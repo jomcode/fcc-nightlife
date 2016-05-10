@@ -3,6 +3,7 @@
     <ul>
       <li *ngFor="let bar of bars">
         {{bar.id}} {{bar.name}} {{bar.description}} {{bar.numberGoing}}
+        <a [routerLink]="['/bars/', bar.id]">TEST LINK</a>
       </li>
     </ul>
   </div>
