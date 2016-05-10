@@ -1,6 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 
+import './main.scss'; // goes to style.css via ExtractTextPlugin
 import { AppComponent } from './app/app.component';
 
 function main(initialHmrState?: any): Promise<any> {

@@ -4,6 +4,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const sourceDir = path.join(__dirname, '..', 'src');
 const mainPath = path.join(__dirname, '..', 'src/main.ts')
@@ -90,12 +91,18 @@ function getModuleLoaders() {
     },
     {
       test: /\.scss$/,
-      loaders: ['to-string', 'css', 'postcss', 'sass']
+      loaders: ['to-string', 'css', 'postcss', 'sass'],
+      exclude: [path.join(sourceDir, 'main.scss')]
     },
     {
       test: /\.html$/,
       loader: 'raw-loader',
       exclude: [path.join(sourceDir, 'index.html')]
+    },
+    {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
+      include: [path.join(sourceDir, 'main.scss')]
     }
   );
 
@@ -111,7 +118,9 @@ function getPlugins() {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         HMR: JSON.stringify(process.env.HMR)
       }
-    })
+    }),
+
+    new ExtractTextPlugin('style.css')
   ];
 
   if (isTest) return plugins;
