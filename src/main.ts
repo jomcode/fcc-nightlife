@@ -1,9 +1,10 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
+
 import { AppComponent } from './app/app.component';
 
 function main(initialHmrState?: any): Promise<any> {
-  return bootstrap(AppComponent)
+  return bootstrap(AppComponent, [])
   .catch((err: any) => console.error(err));
 }
 

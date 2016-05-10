@@ -1,11 +1,12 @@
 <header>
+  <span>{{appName}}</span>
   <nav>
-    nav
+    <a [routerLink]="['/']">Home</a>
   </nav>
 </header>
 
 <section>
-  content
+  <router-outlet></router-outlet>
 </section>
 
 <footer>
