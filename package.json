@@ -22,7 +22,9 @@
     "webdriver:start": "webdriver-manager start",
 
     "pree2e": "npm run webdriver:update -- --standalone",
-    "e2e": "better-npm-run e2e"
+    "e2e": "better-npm-run e2e",
+
+    "tdd:client:hot": "better-npm-run tdd:client:hot"
   },
   "betterScripts": {
     "dev": {
@@ -62,6 +64,9 @@
       "env": {
         "NODE_ENV": "test"
       }
+    },
+    "tdd:client:hot": {
+      "command": "concurrent -k \"npm run dev:hot\" \"npm run test:watch\""
     }
   },
   "keywords": [],

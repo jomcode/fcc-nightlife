@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Routes, Router, ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from '@angular/router';
+import { Routes, Router, ROUTER_DIRECTIVES } from '@angular/router';
 
 import { HomeComponent } from './home';
+import { YelpService } from './home/yelp';
 
 @Component({
   directives: [ ROUTER_DIRECTIVES ],
-  providers: [ ROUTER_PROVIDERS ],
+  providers: [
+    YelpService
+  ],
   selector: 'sg-app',
   styles: [
     require('./app.component.scss')
@@ -21,14 +24,13 @@ import { HomeComponent } from './home';
 ])
 class AppComponent implements OnInit {
   public appName: string = 'Nightlife Coordination';
-  public yelpResults: Array<any>;
 
-  constructor(private router: Router) {
+  constructor(private _router: Router) {
     //
   }
 
   public ngOnInit(): void {
-    this.router.navigate(['/']);
+    this._router.navigate(['/']);
   }
 }
 
