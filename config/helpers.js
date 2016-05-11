@@ -6,8 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const sourceDir = path.join(__dirname, '..', 'src');
-const mainPath = path.join(__dirname, '..', 'src/main.ts')
+const sourceDir = path.join(__dirname, '..', 'src', 'client');
+const mainPath = path.join(__dirname, '..', 'src', 'client/main.ts')
 const outputDir = path.join(__dirname, '..', 'dist');
 const port = process.env.WEBPACK_PORT || 8080;
 const isProduction = process.env.NODE_ENV === 'production';
@@ -138,7 +138,7 @@ function getPlugins() {
     }),
 
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '..', 'src/index.html'),
+      template: path.join(sourceDir, 'index.html'),
       chunksSortMode: packageSort(['polyfills', 'vendor', 'main'])
     })
   );

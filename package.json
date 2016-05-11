@@ -7,59 +7,65 @@
     "tslint": "tslint",
     "typings": "typings",
     "lint": "tslint src/**/*.ts",
-    "dev": "better-npm-run dev",
-    "dev:hot": "better-npm-run dev:hot",
-    "build": "better-npm-run build",
-    "pretest": "npm run lint",
-    "test": "better-npm-run test",
-    "test:watch": "better-npm-run test:watch",
+
+    "dev:client": "better-npm-run dev:client",
+    "dev:client:hot": "better-npm-run dev:client:hot",
+
+    "build:client": "better-npm-run build:client",
+
+    "pretest:client": "npm run lint",
+    "test:client": "better-npm-run test:client",
+    "test:client:watch": "better-npm-run test:client:watch",
+
     "webdriver:update": "webdriver-manager update",
     "webdriver:start": "webdriver-manager start",
-    "pree2e": "npm run webdriver:update -- --standalone",
-    "e2e": "better-npm-run e2e",
+
+    "pree2e:client": "npm run webdriver:update -- --standalone",
+    "e2e:client": "better-npm-run e2e:client",
+
     "tdd:client:hot": "better-npm-run tdd:client:hot"
   },
   "betterScripts": {
-    "dev": {
+    "dev:client": {
       "command": "webpack-dev-server",
       "env": {
         "NODE_ENV": "development",
         "HMR": "disabled"
       }
     },
-    "dev:hot": {
+    "dev:client:hot": {
       "command": "webpack-dev-server",
       "env": {
         "NODE_ENV": "development",
         "HMR": "enabled"
       }
     },
-    "build": {
+    "build:client": {
       "command": "webpack",
       "env": {
         "NODE_ENV": "production"
       }
     },
-    "test": {
+    "test:client": {
       "command": "karma start",
       "env": {
         "NODE_ENV": "test"
       }
     },
-    "test:watch": {
+    "test:client:watch": {
       "command": "karma start --auto-watch --no-single-run",
       "env": {
         "NODE_ENV": "test"
       }
     },
-    "e2e": {
+    "e2e:client": {
       "command": "protractor",
       "env": {
         "NODE_ENV": "test"
       }
     },
     "tdd:client:hot": {
-      "command": "concurrent -k \"npm run dev:hot\" \"npm run test:watch\""
+      "command": "concurrent -k \"npm run dev:client:hot\" \"npm run test:client:watch\""
     }
   },
   "keywords": [],
