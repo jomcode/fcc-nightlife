@@ -8,11 +8,15 @@ class YelpService {
     //
   }
 
-  public getBars(query: string): any {
+  public getBars(query: string): Promise<any> {
     return Promise.resolve(mockData);
   }
 
-  // private handleError(error: any): any {}
+  public getBarDetails(barId: number): Promise<any> {
+    return Promise.resolve(mockData[barId]);
+  }
+
+  // private _handleError(error: any): any {}
 }
 
 export { YelpService };
