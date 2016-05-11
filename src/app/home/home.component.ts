@@ -4,9 +4,7 @@ import { BarListComponent } from './barlist';
 import { YelpService } from './yelp';
 
 @Component({
-  directives: [
-    BarListComponent
-  ],
+  directives: [ BarListComponent ],
   selector: 'sg-home',
   styles: [
     require('./home.component.scss')

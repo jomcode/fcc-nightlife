@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Routes, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router';
+import { Routes, Router } from '@angular/router';
 
 import { HomeComponent } from './home';
 import { BarDetailComponent } from './home/bardetail';
 import { YelpService } from './home/yelp';
 
 @Component({
-  directives: [ ROUTER_DIRECTIVES ],
-  providers: [
-    ROUTER_PROVIDERS,
-    YelpService
-  ],
+  directives: [],
+  providers: [ YelpService ],
   selector: 'sg-app',
   styles: [
     require('./app.component.scss')

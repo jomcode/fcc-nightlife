@@ -13,7 +13,7 @@ class YelpService {
   }
 
   public getBarDetails(barId: number): Promise<any> {
-    return Promise.resolve(mockData[barId]);
+    return Promise.resolve(mockData[barId - 1]);
   }
 
   // private _handleError(error: any): any {}

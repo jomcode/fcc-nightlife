@@ -1,10 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
-  directives: [
-    ROUTER_DIRECTIVES
-  ],
   selector: 'sg-barlist',
   styles: [
     require('./barlist.component.scss')

@@ -201,8 +201,15 @@ function getDevServer() {
       inline: true,
       progress: true,
       stats: {
+        chunks: false,
         colors: true,
-        chunks: false
+        timings: false,
+        version: false,
+        hash: false,
+        assets: false,
+        chunkModules: false,
+        modules: false,
+        children: false
       },
       host: 'localhost',
       port: port
@@ -212,12 +219,19 @@ function getDevServer() {
     return {
       contentBase: path.join(outputDir),
       historyApiFallback: true,
-      // hot: true,
+      hot: false,
       inline: true,
       progress: true,
       stats: {
+        chunks: false,
         colors: true,
-        chunks: false
+        timings: false,
+        version: false,
+        hash: false,
+        assets: false,
+        chunkModules: false,
+        modules: false,
+        children: false
       },
       host: 'localhost',
       port: port

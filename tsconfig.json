@@ -37,6 +37,11 @@
         "src/app/home/yelp/yelp.spec.ts",
         "src/customtypings.d.ts",
         "src/main.ts",
+        "src/platform/browser/directives.ts",
+        "src/platform/browser/index.ts",
+        "src/platform/browser/pipes.ts",
+        "src/platform/browser/providers.ts",
+        "src/platform/environment.ts",
         "src/polyfills.ts",
         "src/vendor.ts",
         "typings/browser.d.ts"

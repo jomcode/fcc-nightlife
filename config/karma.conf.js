@@ -18,7 +18,21 @@ module.exports = function karmaConfig(config) {
 
     webpack: webpackConfig,
 
-    webpackServer: { noInfo: true },
+    webpackServer: {
+      quiet: false,
+      noInfo: true,
+      stats: {
+        chunks: false,
+        colors: true,
+        timings: false,
+        version: false,
+        hash: false,
+        assets: false,
+        chunkModules: false,
+        modules: false,
+        children: false
+      }
+    },
 
     // coverageReporter: {},
 
