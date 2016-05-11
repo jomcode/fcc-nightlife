@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BarListComponent } from './barlist';
+import { SearchComponent } from './search';
 import { YelpService } from './yelp';
 
 @Component({
-  directives: [ BarListComponent ],
+  directives: [
+    BarListComponent,
+    SearchComponent
+  ],
   selector: 'sg-home',
   styles: [
     require('./home.component.scss')

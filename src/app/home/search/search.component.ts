@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  selector: 'sg-search',
   styles: [
     require('./search.component.scss')
   ],
