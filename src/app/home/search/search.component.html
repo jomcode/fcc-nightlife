@@ -1,3 +1,12 @@
 <div>
-  search.component.html
+  <div>
+    <form (ngSubmit)="onSubmit(searchForm.value)" #searchForm="ngForm">
+      <input
+        type="text"
+        required
+        ngControl="queryInput"
+      >
+      <button type="submit" [disabled]="!searchForm.form.valid">Search</button>
+    </form>
+  </div>
 </div>

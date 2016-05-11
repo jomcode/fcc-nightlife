@@ -26,11 +26,18 @@ class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     //
-    this._getBars('').then((b: Array<any>) => this.yelpResults = b.slice(0));
+    this.getBars('').then((b: Array<any>) => this.yelpResults = b.slice(0));
   }
 
-  private _getBars(query: string): Promise<Array<any>> {
+  public getBars(query: string): Promise<Array<any>> {
     return this._yelpService.getBars(query);
+  }
+
+  public handleSearchSubmit(d: any): any {
+    const { value, isValid }: any = d;
+    if (isValid) {
+      this.getBars(value).then((b: Array<any>) => this.yelpResults = b.slice(0));
+    }
   }
 }
 

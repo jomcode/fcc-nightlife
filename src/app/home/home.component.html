@@ -1,5 +1,7 @@
 <div>
-  home.component.html
-  <sg-search></sg-search>
+  <sg-search
+    (submitHandler)="handleSearchSubmit($event);"
+  >
+  </sg-search>
   <sg-barlist [bars]="yelpResults"></sg-barlist>
 </div>
