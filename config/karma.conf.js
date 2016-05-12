@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = function karmaConfig(config) {
   const webpackConfig = require('../webpack.config.js');
 

@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -29,7 +29,7 @@ function getDevTool() {
 }
 
 function getDebug() {
-  return isDevelopment ? true : false;
+  return isDevelopment;
 }
 
 function getEntry() {
@@ -109,7 +109,7 @@ function getModuleLoaders() {
   return loaders;
 }
 
-function getModulePostLoaders() {}
+// function getModulePostLoaders() {}
 
 function getPlugins() {
   const plugins = [

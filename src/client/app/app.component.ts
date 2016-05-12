@@ -32,7 +32,7 @@ class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log('AppComponent ngOnInit');
+    //
   }
 }
 
