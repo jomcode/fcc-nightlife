@@ -1,5 +1,13 @@
 {
+  "host": "foo",
+  "port": 3030,
+  "postgres": "postgres://postgres@docker:5432/nightlife",
   "public": "../../../dist",
-  "host": "localhost",
-  "port": 3030
+  "auth": {
+    "idField": "id",
+    "token": {
+      "secret": "MNwt5daxH3V3YqSj7oBb1frMQnswG/1N+hGbRNxkLOaSDMrNr12+I4VcrckpkVnyhUxFv2uVMZZnT/kGm+wBiQ=="
+    }
+  },
+  "local": {}
 }
