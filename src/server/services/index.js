@@ -1,7 +1,9 @@
 'use strict';
+const Sequelize = require('sequelize');
+
 const authentication = require('./authentication');
 const user = require('./user');
-const Sequelize = require('sequelize');
+const yelp = require('./yelp');
 
 module.exports = function() {
   const app = this;
@@ -15,4 +17,5 @@ module.exports = function() {
 
   app.configure(authentication);
   app.configure(user);
+  app.configure(yelp);
 };

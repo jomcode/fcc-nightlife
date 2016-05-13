@@ -186,7 +186,8 @@ function packageSort(packages) {
     // vendor before app
     if (a.names[0] !== first && b.names[0] === last) {
       return -1;
-    } else {
+    }
+    else {
       return 1;
     }
   }
