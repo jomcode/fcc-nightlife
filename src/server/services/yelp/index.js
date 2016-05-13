@@ -2,6 +2,8 @@
 const yelp = require('../../config/yelp').yelp;
 const hooks = require('./hooks');
 
+const formatBusinesses = require('../../utilities/formatbusinesses');
+
 class Service {
   constructor(options) {
     this.options = options || {};
@@ -11,7 +13,10 @@ class Service {
     return yelp.search({
       location: params.query.location || '',
       'category_filter': 'bars'
-    });
+    })
+    .then(resp => resp.businesses)
+    .then(businesses => formatBusinesses(businesses))
+    .then(data => ({ data }));
   }
 
   get(id, params) {
