@@ -18,8 +18,8 @@ class LoginComponent implements OnDestroy {
     public appState: AppState
   ) {
     this.loginSubscription = feathersService.login$.subscribe(
-      (result: any) => console.log(result),
-      (error: any) => console.error(error)
+      (result: any) => { /* TODO: handle success */ },
+      (error: any) => { /* TODO: handle error */ console.error(error); }
     );
   }
 
