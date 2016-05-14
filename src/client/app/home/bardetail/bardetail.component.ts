@@ -11,6 +11,8 @@ import { YelpService } from '../yelp';
   template: require('./bardetail.component.html')
 })
 class BarDetailComponent implements OnInit, OnActivate {
+  public isLoading: boolean = true;
+  public errorMessage: any;
   public bar: any;
 
   constructor(
@@ -25,7 +27,12 @@ class BarDetailComponent implements OnInit, OnActivate {
 
   public routerOnActivate(curr: any): void {
     const { parameters: { barId } }: any = curr;
-    this._getBarDetails(barId).then((b: any) => this.bar = Object.assign({}, b));
+
+    this._getBarDetails(barId)
+      .subscribe(
+        (details: any) => { this.bar = details; this.isLoading = false; },
+        (error: any) => this.errorMessage = error
+      );
   }
 
   private _getBarDetails(barId: number): any {

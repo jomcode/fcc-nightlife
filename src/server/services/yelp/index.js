@@ -2,7 +2,7 @@
 const yelp = require('../../config/yelp').yelp;
 const hooks = require('./hooks');
 
-const formatBusinesses = require('../../utilities/formatbusinesses');
+const formatBusiness = require('../../utilities/formatbusiness');
 
 class Service {
   constructor(options) {
@@ -15,12 +15,14 @@ class Service {
       'category_filter': 'bars'
     })
     .then(resp => resp.businesses)
-    .then(businesses => formatBusinesses(businesses))
+    .then(businesses => businesses.map(b => formatBusiness(b)))
     .then(data => ({ data }));
   }
 
   get(id, params) {
-    return yelp.business(id);
+    return yelp.business(id)
+    .then(business => formatBusiness(business))
+    .then(data => ({ data }));
   }
 
   create(data, params) {}

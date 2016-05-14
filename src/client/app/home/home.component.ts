@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AppState } from '../app.service';
 import { BarListComponent } from './barlist';
 import { SearchComponent } from './search';
 import { YelpService } from './yelp';
@@ -16,18 +17,15 @@ import { YelpService } from './yelp';
   template: require('./home.component.html')
 })
 class HomeComponent implements OnInit {
-  public yelpResults: Array<any>;
-  public errorMessage: any;
-
   constructor(
-    private _yelpService: YelpService
+    private _yelpService: YelpService,
+    public appState: AppState
   ) {
     //
   }
 
   public ngOnInit(): void {
     //
-    // this.getBars('').then((b: Array<any>) => this.yelpResults = b.slice(0));
   }
 
   public getBars(query: string): any {
@@ -37,11 +35,10 @@ class HomeComponent implements OnInit {
   public handleSearchSubmit(d: any): any {
     const { value, isValid }: any = d;
     if (isValid) {
-      // this.getBars(value).then((b: Array<any>) => this.yelpResults = b.slice(0));
       this.getBars(value)
         .subscribe(
-          (bars: any) => console.log('bars', bars),
-          (error: any) => this.errorMessage = error
+          (bars: any) => this.appState.state.bars = bars,
+          (error: any) => this.appState.state.errorMessage = error
         );
     }
   }

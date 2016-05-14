@@ -1,4 +1,4 @@
-const formatBusinesses = businesses => businesses.map(b => Object.assign({}, {
+const formatBusiness = b => Object.assign({}, {
   rating: b.rating,
   reviewCount: b.review_count,
   name: b.name,
@@ -15,6 +15,6 @@ const formatBusinesses = businesses => businesses.map(b => Object.assign({}, {
     state: b.location.state_code,
     displayAddress: b.location.display_address.slice(0)
   }
-}));
+});
 
-module.exports = formatBusinesses;
+module.exports = formatBusiness;

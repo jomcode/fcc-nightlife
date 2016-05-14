@@ -19,6 +19,7 @@
     "files": [
         "src/client/app/app.component.ts",
         "src/client/app/app.e2e.ts",
+        "src/client/app/app.service.ts",
         "src/client/app/app.spec.ts",
         "src/client/app/home/bardetail/bardetail.component.ts",
         "src/client/app/home/bardetail/bardetail.spec.ts",
