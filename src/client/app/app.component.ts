@@ -4,7 +4,7 @@ import { Routes, Router } from '@angular/router';
 import { AppState } from './app.service';
 import { HomeComponent } from './home';
 import { BarDetailComponent } from './home/bardetail';
-import { YelpService } from './home/yelp';
+import { YelpService } from './yelp';
 
 @Component({
   directives: [],

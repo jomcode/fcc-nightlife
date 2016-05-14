@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../app.service';
 import { BarListComponent } from './barlist';
 import { SearchComponent } from './search';
-import { YelpService } from './yelp';
+import { YelpService } from '../yelp';
 
 @Component({
   directives: [

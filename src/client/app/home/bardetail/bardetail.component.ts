@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OnActivate } from '@angular/router';
 
-import { YelpService } from '../yelp';
+import { YelpService } from '../../yelp';
 
 @Component({
   selector: 'sg-bardetail',
