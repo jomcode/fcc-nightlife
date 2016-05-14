@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { OnActivate } from '@angular/router';
 
-import { YelpService } from '../../yelp';
+import { FeathersService } from '../../feathers';
 
 @Component({
   selector: 'sg-bardetail',
@@ -10,33 +10,34 @@ import { YelpService } from '../../yelp';
   ],
   template: require('./bardetail.component.html')
 })
-class BarDetailComponent implements OnInit, OnActivate {
+class BarDetailComponent implements OnDestroy, OnActivate {
+  private detailSubscription: any;
+
   public isLoading: boolean = true;
   public errorMessage: any;
   public bar: any;
 
   constructor(
-    private _yelpService: YelpService
+    private feathersService: FeathersService
   ) {
-    //
+    this.detailSubscription = feathersService.detail$.subscribe(
+      (details: any) => { this.bar = details; this.isLoading = false; },
+      (error: any) => this.errorMessage = error
+    );
   }
 
-  public ngOnInit(): void {
-    //
+  public ngOnDestroy(): void {
+    this.detailSubscription.unsubscribe();
   }
 
   public routerOnActivate(curr: any): void {
     const { parameters: { barId } }: any = curr;
 
-    this._getBarDetails(barId)
-      .subscribe(
-        (details: any) => { this.bar = details; this.isLoading = false; },
-        (error: any) => this.errorMessage = error
-      );
+    this.getBarDetails(barId);
   }
 
-  private _getBarDetails(barId: number): any {
-    return this._yelpService.getBarDetails(barId);
+  private getBarDetails(barId: any): any {
+    this.feathersService.getBarDetails(barId);
   }
 }
 

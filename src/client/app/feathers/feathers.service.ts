@@ -40,7 +40,7 @@ class FeathersService {
       password
     })
     .then((result: any) => this.loginSource.next(result))
-    .catch((error: any) => console.error('error', error));
+    .catch((error: any) => this.handleError(error));
   }
 
   public logout(): void {
@@ -52,15 +52,24 @@ class FeathersService {
 
     yelp.find({ query: { location } })
       .then((result: any) => this.searchResultSource.next(result.data))
-      .catch((error: any) => console.error('error', error));
+      .catch((error: any) => this.handleError(error));
   }
 
   public getBarDetails(barId: any): any {
     const yelp: any = this.app.service('yelp');
 
-    yelp.get(barId)
-      .then((result: any) => this.detailSource.next(result))
-      .catch((error: any) => console.error('error', error));
+    yelp.get(barId, undefined)
+      .then((result: any) => this.detailSource.next(this.extractData(result)))
+      .catch((error: any) => this.handleError(error));
+  }
+
+  private extractData(response: any): any {
+    return Object.assign({}, response.data || {});
+  }
+
+  private handleError(error: any): any {
+    const msg: any = error.message || 'Server error';
+    return Observable.throw(msg);
   }
 }
 
