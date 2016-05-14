@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
-import { YelpService } from '../yelp';
 import { AppState } from '../app.service';
+import { FeathersService } from '../feathers';
 
 @Component({
   selector: 'sg-signup',
@@ -10,20 +10,25 @@ import { AppState } from '../app.service';
   ],
   template: require('./signup.component.html')
 })
-class SignupComponent {
+class SignupComponent implements OnDestroy {
+  private signupSubscription: any;
+
   constructor(
-    private yelpService: YelpService,
+    private feathersService: FeathersService,
     public appState: AppState
   ) {
-    //
+    this.signupSubscription = feathersService.signup$.subscribe(
+      (result: any) => { /* TODO handle success */ },
+      (error: any) => { /* TODO handle error */ }
+    );
   }
 
   public onSubmit(d: any): any {
-    this.yelpService.signup(this.formatUser(d))
-      .subscribe(
-        (user: any) => console.log('user', user),
-        (error: any) => this.appState.state.errorMessage = error
-      );
+    this.feathersService.signup(this.formatUser(d));
+  }
+
+  public ngOnDestroy(): void {
+    this.signupSubscription.unsubscribe();
   }
 
   private formatUser(u: any): any {

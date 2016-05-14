@@ -17,6 +17,9 @@ const rootUrl: string = process.env.NODE_ENV === 'production' ?
 class FeathersService {
   private app: any;
 
+  private signupSource: Subject<any> = new Subject<any>();
+  public signup$: any = this.signupSource.asObservable();
+
   private loginSource: any = new Subject();
   public login$: any = this.loginSource.asObservable();
 
@@ -30,7 +33,18 @@ class FeathersService {
     this.app = feathers()
       .configure(rest(rootUrl).superagent(superagent))
       .configure(hooks())
-      .configure(authentication({ storage: window.localStorage }));
+      .configure(authentication({
+        storage: window.localStorage,
+        tokenKey: 'jom-nightlife-jwt'
+      }));
+  }
+
+  public signup(user: any): any {
+    const users: any = this.app.service('users');
+
+    users.create(user)
+     .then((result: any) => this.signupSource.next(this.extractData(result)))
+     .catch((error: any) => this.handleError(error));
   }
 
   public login(email: string, password: string): any {
@@ -39,7 +53,7 @@ class FeathersService {
       email,
       password
     })
-    .then((result: any) => this.loginSource.next(result))
+    .then((result: any) => this.loginSource.next(this.extractData(result)))
     .catch((error: any) => this.handleError(error));
   }
 
@@ -51,16 +65,16 @@ class FeathersService {
     const yelp: any = this.app.service('yelp');
 
     yelp.find({ query: { location } })
-      .then((result: any) => this.searchResultSource.next(result.data))
-      .catch((error: any) => this.handleError(error));
+    .then((result: any) => this.searchResultSource.next(this.extractData(result)))
+    .catch((error: any) => this.handleError(error));
   }
 
   public getBarDetails(barId: any): any {
     const yelp: any = this.app.service('yelp');
 
     yelp.get(barId, undefined)
-      .then((result: any) => this.detailSource.next(this.extractData(result)))
-      .catch((error: any) => this.handleError(error));
+    .then((result: any) => this.detailSource.next(this.extractData(result)))
+    .catch((error: any) => this.handleError(error));
   }
 
   private extractData(response: any): any {
