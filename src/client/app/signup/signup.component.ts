@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { YelpService } from '../yelp';
+import { AppState } from '../app.service';
 
 @Component({
   selector: 'sg-signup',
@@ -11,13 +12,26 @@ import { YelpService } from '../yelp';
 })
 class SignupComponent {
   constructor(
-    private yelpService: YelpService
+    private yelpService: YelpService,
+    public appState: AppState
   ) {
     //
   }
+
   public onSubmit(d: any): any {
-    console.log(d);
-    this.yelpService.signup(d);
+    this.yelpService.signup(this.formatUser(d))
+      .subscribe(
+        (user: any) => console.log('user', user),
+        (error: any) => this.appState.state.errorMessage = error
+      );
+  }
+
+  private formatUser(u: any): any {
+    return Object.assign({}, {
+      username: u.usernameInput,
+      email: u.emailInput,
+      password: u.passwordInput
+    });
   }
 }
 

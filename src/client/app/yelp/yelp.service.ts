@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 const rootUrl: string = process.env.NODE_ENV === 'production' ?
@@ -13,19 +13,42 @@ class YelpService {
   }
 
   public signup(user: any): any {
-    console.log('user', user);
+    const headers: Headers = new Headers({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const options: RequestOptions = new RequestOptions({ headers });
+
+    const body: string = JSON.stringify(user);
+
+    return this.http.post(`${rootUrl}/user`, body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   public getBars(query: string): any {
+    const headers: Headers = new Headers({
+      'Accept': 'application/json'
+    });
+
+    const options: RequestOptions = new RequestOptions({ headers });
+
     return this.http
-      .get(`${rootUrl}/yelp?location=${query}`)
+      .get(`${rootUrl}/yelp?location=${query}`, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   public getBarDetails(barId: number): any {
+    const headers: Headers = new Headers({
+      'Accept': 'application/json'
+    });
+
+    const options: RequestOptions = new RequestOptions({ headers });
+
     return this.http
-      .get(`${rootUrl}/yelp/${barId}`)
+      .get(`${rootUrl}/yelp/${barId}`, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -35,6 +58,7 @@ class YelpService {
       throw new Error('Bad response status: ' + res.status);
     }
     const body: any = res.json();
+    console.log('body', body);
     return body.data || {};
   }
 

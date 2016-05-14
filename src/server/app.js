@@ -8,7 +8,6 @@ const cors = require('cors');
 const compress = require('compression');
 // const favicon = require('serve-favicon');
 const rest = require('feathers-rest');
-const authentication = require('feathers-authentication');
 
 const middleware = require('./middleware');
 const services = require('./services');
@@ -35,7 +34,6 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(services)
-  .configure(middleware)
-  .configure(authentication);
+  .configure(middleware);
 
 module.exports = app;
