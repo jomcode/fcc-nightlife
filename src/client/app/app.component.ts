@@ -4,6 +4,7 @@ import { Routes, Router } from '@angular/router';
 import { AppState } from './app.service';
 import { HomeComponent } from './home';
 import { BarDetailComponent } from './home/bardetail';
+import { SignupComponent } from './signup';
 import { YelpService } from './yelp';
 
 @Component({
@@ -23,6 +24,10 @@ import { YelpService } from './yelp';
   {
     path: '/bars/:barId',
     component: BarDetailComponent
+  },
+  {
+    path: '/signup',
+    component: SignupComponent
   }
 ])
 class AppComponent implements OnInit {

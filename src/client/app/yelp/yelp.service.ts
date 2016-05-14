@@ -12,6 +12,10 @@ class YelpService {
     //
   }
 
+  public signup(user: any): any {
+    console.log('user', user);
+  }
+
   public getBars(query: string): any {
     return this.http
       .get(`${rootUrl}/yelp?location=${query}`)
