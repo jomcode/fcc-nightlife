@@ -5,6 +5,7 @@ import { AppState } from './app.service';
 import { HomeComponent } from './home';
 import { BarDetailComponent } from './home/bardetail';
 import { SignupComponent } from './signup';
+import { LoginComponent } from './login';
 import { YelpService } from './yelp';
 
 @Component({
@@ -28,6 +29,10 @@ import { YelpService } from './yelp';
   {
     path: '/signup',
     component: SignupComponent
+  },
+  {
+    path: '/login',
+    component: LoginComponent
   }
 ])
 class AppComponent implements OnInit {
