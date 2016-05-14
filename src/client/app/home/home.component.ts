@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { BarListComponent } from './barlist';
 import { SearchComponent } from './search';
-import { YelpService } from '../yelp';
+import { FeathersService } from '../feathers';
 
 @Component({
   directives: [
@@ -16,20 +16,16 @@ import { YelpService } from '../yelp';
   ],
   template: require('./home.component.html')
 })
-class HomeComponent implements OnInit {
+class HomeComponent {
   constructor(
-    private _yelpService: YelpService,
+    private feathersService: FeathersService,
     public appState: AppState
   ) {
     //
   }
 
-  public ngOnInit(): void {
-    //
-  }
-
-  public getBars(query: string): any {
-    return this._yelpService.getBars(query);
+  public getBars(location: string): any {
+    return this.feathersService.getBars(location);
   }
 
   public handleSearchSubmit(d: any): any {

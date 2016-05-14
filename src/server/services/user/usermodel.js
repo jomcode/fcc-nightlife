@@ -9,11 +9,6 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
   const user = sequelize.define('user', {
-    username: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true
-    },
     email: {
       type: Sequelize.STRING,
       allowNull: false,

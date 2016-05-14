@@ -27,10 +27,6 @@ class YelpService {
       .catch(this.handleError);
   }
 
-  public login(user: any, pass: any): any {
-    console.log('login', user, pass);
-  }
-
   public getBars(query: string): any {
     const headers: Headers = new Headers({
       'Accept': 'application/json'

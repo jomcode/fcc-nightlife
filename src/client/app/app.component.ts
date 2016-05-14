@@ -7,10 +7,11 @@ import { BarDetailComponent } from './home/bardetail';
 import { SignupComponent } from './signup';
 import { LoginComponent } from './login';
 import { YelpService } from './yelp';
+import { FeathersService } from './feathers';
 
 @Component({
   directives: [],
-  providers: [ AppState, YelpService ],
+  providers: [ AppState, YelpService, FeathersService ],
   selector: 'sg-app',
   styles: [
     require('./app.component.scss')

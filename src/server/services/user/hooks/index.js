@@ -41,7 +41,6 @@ exports.before = {
 
 const formatCreateResult = hook => {
   const updatedResult = Object.assign({}, {
-    username: hook.result.dataValues.username,
     email: hook.result.dataValues.email
   });
 
