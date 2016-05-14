@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { BarListComponent } from './barlist';
@@ -16,12 +16,17 @@ import { FeathersService } from '../feathers';
   ],
   template: require('./home.component.html')
 })
-class HomeComponent {
+class HomeComponent implements OnDestroy {
+  private searchSubscription: any;
+
   constructor(
     private feathersService: FeathersService,
     public appState: AppState
   ) {
-    //
+    this.searchSubscription = feathersService.searchResult$.subscribe(
+      (results: any) => this.appState.state.bars = results,
+      (error: any) => this.appState.state.errorMessage = error
+    );
   }
 
   public getBars(location: string): any {
@@ -31,12 +36,12 @@ class HomeComponent {
   public handleSearchSubmit(d: any): any {
     const { value, isValid }: any = d;
     if (isValid) {
-      this.getBars(value)
-        .subscribe(
-          (bars: any) => this.appState.state.bars = bars,
-          (error: any) => this.appState.state.errorMessage = error
-        );
+      this.getBars(value);
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
   }
 }
 

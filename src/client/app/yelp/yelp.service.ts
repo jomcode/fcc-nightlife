@@ -40,7 +40,7 @@ class YelpService {
       .catch(this.handleError);
   }
 
-  public getBarDetails(barId: number): any {
+  public getBarDetails(barId: any): any {
     const headers: Headers = new Headers({
       'Accept': 'application/json'
     });

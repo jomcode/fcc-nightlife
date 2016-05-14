@@ -17,9 +17,14 @@ const rootUrl: string = process.env.NODE_ENV === 'production' ?
 class FeathersService {
   private app: any;
 
-  private searchResultSource: any = new Subject();
+  private loginSource: any = new Subject();
+  public login$: any = this.loginSource.asObservable();
 
+  private searchResultSource: any = new Subject();
   public searchResult$: any = this.searchResultSource.asObservable();
+
+  private detailSource: any = new Subject();
+  public detail$: any = this.detailSource.asObservable();
 
   constructor() {
     this.app = feathers()
@@ -29,14 +34,13 @@ class FeathersService {
   }
 
   public login(email: string, password: string): any {
-    return Observable.from(this.app.authenticate({
+    this.app.authenticate({
       type: 'local',
       email,
       password
     })
-    .then((result: any) => result)
-    .catch((error: any) => console.error('error', error))
-    );
+    .then((result: any) => this.loginSource.next(result))
+    .catch((error: any) => console.error('error', error));
   }
 
   public logout(): void {
@@ -46,10 +50,17 @@ class FeathersService {
   public getBars(location: string): any {
     const yelp: any = this.app.service('yelp');
 
-    return Observable.from(yelp.find({ query: { location } })
-      .then((result: any) => result.data)
-      .catch((error: any) => console.error('error', error))
-    );
+    yelp.find({ query: { location } })
+      .then((result: any) => this.searchResultSource.next(result.data))
+      .catch((error: any) => console.error('error', error));
+  }
+
+  public getBarDetails(barId: any): any {
+    const yelp: any = this.app.service('yelp');
+
+    yelp.get(barId)
+      .then((result: any) => this.detailSource.next(result))
+      .catch((error: any) => console.error('error', error));
   }
 }
 

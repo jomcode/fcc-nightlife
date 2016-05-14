@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
-import { YelpService } from '../yelp';
 import { FeathersService } from '../feathers';
 import { AppState } from '../app.service';
 
@@ -11,21 +10,25 @@ import { AppState } from '../app.service';
   ],
   template: require('./login.component.html')
 })
-class LoginComponent {
+class LoginComponent implements OnDestroy {
+  private loginSubscription: any;
+
   constructor(
-    private yelpService: YelpService,
-    private feathers: FeathersService,
+    private feathersService: FeathersService,
     public appState: AppState
   ) {
-    //
+    this.loginSubscription = feathersService.login$.subscribe(
+      (result: any) => console.log(result),
+      (error: any) => console.error(error)
+    );
   }
 
   public onSubmit(d: any): any {
-    this.feathers.login(d.emailInput, d.passwordInput)
-      .subscribe(
-        (result: any) => console.log(result),
-        (error: any) => console.error(error)
-      );
+    this.feathersService.login(d.emailInput, d.passwordInput);
+  }
+
+  public ngOnDestroy(): void {
+    this.loginSubscription.unsubscribe();
   }
 }
 
