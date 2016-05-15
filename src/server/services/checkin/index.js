@@ -14,9 +14,9 @@ module.exports = function() {
     }
   };
 
-  app.use('/checkins', service(options));
+  app.use('/checkin', service(options));
 
-  const checkInService = app.service('/checkins');
+  const checkInService = app.service('/checkin');
 
   checkInService.before(hooks.before);
   checkInService.after(hooks.after);

@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
   const checkIn = sequelize.define('checkIn', {
-    username: {
+    email: {
       type: Sequelize.STRING,
       allowNull: false
     },

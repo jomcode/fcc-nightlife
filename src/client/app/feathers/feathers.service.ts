@@ -78,6 +78,7 @@ class FeathersService {
   }
 
   private extractData(response: any): any {
+    if (Array.isArray(response.data)) return response.data.slice(0);
     return Object.assign({}, response.data || {});
   }
 
