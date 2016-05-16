@@ -21,6 +21,13 @@ module.exports = function() {
   app.configure(yelp);
   app.configure(checkin);
 
+  /* Set up relationships between models */
+  const models = sequelize.models;
+  Object.keys(models)
+    .map(name => models[name])
+    .filter(model => model.associate)
+    .forEach(model => model.associate(models));
+
   sequelize.sync();
   // sequelize.sync({ force: true });
 };

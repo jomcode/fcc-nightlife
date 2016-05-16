@@ -6,15 +6,21 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
   const checkin = sequelize.define('checkin', {
-    // email: {
-      // type: Sequelize.STRING,
-      // allowNull: false
-    // },
     barId: {
       type: Sequelize.STRING,
       allowNull: false
     }
   }, {
+    classMethods: {
+      associate(models) {
+        checkin.belongsTo(models.user,
+          {
+            foreignKey: { allowNull: false },
+            onDelete: 'CASCADE'
+          }
+        );
+      }
+    },
     freezeTableName: true
   });
 

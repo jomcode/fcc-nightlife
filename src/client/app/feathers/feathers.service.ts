@@ -84,7 +84,7 @@ class FeathersService {
     const checkin: any = this.app.service('checkin');
 
     const handleResult: any = (result: any) => {
-      checkin.create({ barId, email: result.data.email })
+      checkin.create({ barId, userId: this.app.get('user').id })
       .then((r: any) => this.checkinSource.next(r))
       .catch((e: any) => console.error('create error', e));
     };
