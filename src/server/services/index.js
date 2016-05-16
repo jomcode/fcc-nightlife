@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const authentication = require('./authentication');
 const user = require('./user');
 const yelp = require('./yelp');
-const checkIn = require('./checkin');
+const checkin = require('./checkin');
 
 module.exports = function() {
   const app = this;
@@ -19,5 +19,8 @@ module.exports = function() {
   app.configure(authentication);
   app.configure(user);
   app.configure(yelp);
-  app.configure(checkIn);
+  app.configure(checkin);
+
+  sequelize.sync();
+  // sequelize.sync({ force: true });
 };

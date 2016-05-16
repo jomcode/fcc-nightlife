@@ -22,8 +22,5 @@ module.exports = function(sequelize) {
     freezeTableName: true
   });
 
-  user.sync();
-  // user.sync({ force: true }) // -- removes all database content
-
   return user;
 };
