@@ -23,8 +23,8 @@ class FeathersService {
   private loginSource: any = new Subject();
   public login$: any = this.loginSource.asObservable();
 
-  private searchResultSource: any = new Subject();
-  public searchResult$: any = this.searchResultSource.asObservable();
+  private barsSource: any = new Subject();
+  public bars$: any = this.barsSource.asObservable();
 
   private detailSource: any = new Subject();
   public detail$: any = this.detailSource.asObservable();
@@ -68,7 +68,7 @@ class FeathersService {
     const yelp: any = this.app.service('yelp');
 
     yelp.find({ query: { location } })
-    .then((result: any) => this.searchResultSource.next(this.extractData(result)))
+    .then((result: any) => this.barsSource.next(this.extractData(result)))
     .catch((error: any) => this.handleError(error));
   }
 
@@ -96,6 +96,19 @@ class FeathersService {
     this.app.authenticate()
     .then((result: any) => handleResult(result))
     .catch((error: any) => handleError(error));
+  }
+
+  public getUser(): any {
+    return this.app.get('user');
+  }
+
+  public getToken(): any {
+    return this.app.get('token');
+  }
+
+  public authenticate(): any {
+    return this.app.authenticate()
+    .then((r: any) => r);
   }
 
   private extractData(response: any): any {

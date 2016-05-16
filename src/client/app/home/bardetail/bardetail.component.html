@@ -1,14 +1,14 @@
-<div *ngIf="bar">
-  <img src="{{bar.imageUrl}}" alt="Picture of the business.">
-  <p>Name: {{bar.name}}</p>
-  <p>Snippet: {{bar.snippet.text}}</p>
-  <p>Rating: {{bar.rating}}</p>
-  <p>Number of Ratings: {{bar.reviewCount}}</p>
-  <p>Phone: {{bar.phone}}</p>
-  <p>isOpen: {{bar.isOpen}}</p>
-  <p>City: {{bar.location.city}}</p>
-  <p>ZipCode: {{bar.location.zipCode}}</p>
-  <p>State: {{bar.location.state}}</p>
-  <p>Address: {{bar.location.displayAddress.join(' ')}}</p>
-  <p>Number Going: {{bar.numberGoing}}</p>
+<div *ngIf="appState.state.barDetails">
+  <img src="{{appState.state.barDetails.imageUrl}}" alt="Picture of the business.">
+  <p>Name: {{appState.state.barDetails.name}}</p>
+  <p>Snippet: {{appState.state.barDetails.snippet.text}}</p>
+  <p>Rating: {{appState.state.barDetails.rating}}</p>
+  <p>Number of Ratings: {{appState.state.barDetails.reviewCount}}</p>
+  <p>Phone: {{appState.state.barDetails.phone}}</p>
+  <p>isOpen: {{appState.state.barDetails.isOpen}}</p>
+  <p>City: {{appState.state.barDetails.location.city}}</p>
+  <p>ZipCode: {{appState.state.barDetails.location.zipCode}}</p>
+  <p>State: {{appState.state.barDetails.location.state}}</p>
+  <p>Address: {{appState.state.barDetails.location.displayAddress.join(' ')}}</p>
+  <p>Number Going: {{appState.state.barDetails.numberGoing}}</p>
 </div>

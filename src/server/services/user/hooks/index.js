@@ -39,12 +39,8 @@ exports.before = {
   ]
 };
 
-const formatCreateResult = hook => {
-  const updatedResult = Object.assign({}, {
-    email: hook.result.dataValues.email
-  });
-
-  const data = Object.assign({}, { data: updatedResult });
+const formatResult = hook => {
+  const data = Object.assign({}, { data: hook.result.dataValues });
   hook.result = data;
 };
 
@@ -52,7 +48,7 @@ exports.after = {
   all: [hooks.remove('password')],
   find: [],
   get: [],
-  create: [formatCreateResult],
+  create: [formatResult],
   update: [],
   patch: [],
   remove: []
