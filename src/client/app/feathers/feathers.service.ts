@@ -29,6 +29,9 @@ class FeathersService {
   private detailSource: any = new Subject();
   public detail$: any = this.detailSource.asObservable();
 
+  private checkinSource: any = new Subject();
+  public checkin$: any = this.checkinSource.asObservable();
+
   constructor() {
     this.app = feathers()
       .configure(rest(rootUrl).superagent(superagent))
@@ -75,6 +78,24 @@ class FeathersService {
     yelp.get(barId, undefined)
     .then((result: any) => this.detailSource.next(this.extractData(result)))
     .catch((error: any) => this.handleError(error));
+  }
+
+  public checkin(barId: any): any {
+    const checkin: any = this.app.service('checkin');
+
+    const handleResult: any = (result: any) => {
+      checkin.create({ barId, email: result.data.email })
+      .then((r: any) => this.checkinSource.next(r))
+      .catch((e: any) => console.error('create error', e));
+    };
+
+    const handleError: any = (error: any) => {
+      console.error('checkin error', error);
+    };
+
+    this.app.authenticate()
+    .then((result: any) => handleResult(result))
+    .catch((error: any) => handleError(error));
   }
 
   private extractData(response: any): any {

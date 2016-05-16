@@ -1,10 +1,10 @@
 <div>
   <div *ngIf="bars">
-    <ul>
-      <li *ngFor="let bar of bars">
-        {{bar.id}} {{bar.name}} {{bar.description}} {{bar.numberGoing}}
+      <div *ngFor="let bar of bars">
+        {{bar.name}} {{bar.description}} {{bar.numberGoing}}
         <a [routerLink]="['/bars/', bar.id]">TEST LINK</a>
-      </li>
-    </ul>
+
+        <sg-checkin barId="{{bar.id}}"></sg-checkin>
+      </div>
   </div>
 </div>

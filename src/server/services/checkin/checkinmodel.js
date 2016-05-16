@@ -5,7 +5,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-  const checkIn = sequelize.define('checkIn', {
+  const checkin = sequelize.define('checkin', {
     email: {
       type: Sequelize.STRING,
       allowNull: false
@@ -18,8 +18,8 @@ module.exports = function(sequelize) {
     freezeTableName: true
   });
 
-  checkIn.sync();
-  // checkIn.sync({ force: true }) // -- removes all database content
+  checkin.sync();
+  // checkin.sync({ force: true }) // -- removes all database content
 
-  return checkIn;
+  return checkin;
 };
