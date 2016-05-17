@@ -1,10 +1,19 @@
-<div *ngIf="bars">
-  <div *ngFor="let bar of bars">
+<div *ngIf="bars" class="card-section">
+  <div *ngFor="let bar of bars" class="card">
 
-    <div>
-      {{bar.name}} {{bar.description}} {{bar.numberGoing}}
-      <sg-checkin barId="{{bar.id}}"></sg-checkin>
-
+    <div class="card-header">
+      <img src="{{bar.imageUrl}}" alt="Image of the bar.">
+      <p>{{bar.name}}</p>
     </div>
+
+    <div class="card-snippet">
+      <p>{{bar.snippet.text}}</p>
+    </div>
+
+    <div class="card-checkin">
+      <sg-checkin barId="{{bar.id}}"></sg-checkin>
+      <span>Total Going: {{bar.numberGoing || 0}}</span>
+    </div>
+
   </div>
 </div>

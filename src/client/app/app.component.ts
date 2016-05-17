@@ -7,6 +7,8 @@ import { SignupComponent } from './signup';
 import { LoginComponent } from './login';
 import { FeathersService } from './feathers';
 
+import { mockData } from './feathers/mockdata';
+
 @Component({
   directives: [],
   providers: [ AppState, FeathersService ],
@@ -95,6 +97,8 @@ class AppComponent implements OnInit, OnDestroy {
     this.feathers.authenticate()
       .then((result: any) => state.credentials = formatCredentials(result))
       .catch((e: any) => state.credentials = {});
+
+    this.appState.state.bars = mockData.slice(0);
   }
 
   public ngOnDestroy(): void {
