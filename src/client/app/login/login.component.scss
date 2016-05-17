@@ -1,0 +1,19 @@
+@import '../../_variables.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+  }
+
+  input[type="email"], input[type="password"] {
+    @extend .txt-input;
+  }
+
+  button {
+    @extend .btn;
+  }
+}

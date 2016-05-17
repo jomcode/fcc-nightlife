@@ -1,7 +1,7 @@
 <div>
-  <div>
+    <h1>Login</h1>
     <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
-      <div>
+      <div class="input-group">
         <label for="usernameInput">Email</label>
         <input
           id="emailInput"
@@ -11,7 +11,7 @@
         >
       </div>
 
-      <div>
+      <div class="input-group">
         <label for="passwordInput">Password</label>
         <input
           id="passwordInput"
@@ -21,9 +21,16 @@
         >
       </div>
 
-      <div>
-        <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+      <div class="form-footer">
+        <div class="footer-section">
+          <span *ngIf="isFetching">Logging in...</span>
+        </div>
+
+        <div class="footer-section">
+          <button type="submit" [disabled]="!loginForm.form.valid">
+            Login
+          </button>
+        </div>
       </div>
     </form>
-  </div>
 </div>

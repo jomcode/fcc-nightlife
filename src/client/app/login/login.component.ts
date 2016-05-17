@@ -10,11 +10,14 @@ import { FeathersService } from '../feathers';
   template: require('./login.component.html')
 })
 class LoginComponent {
+  private isFetching: boolean = false;
+
   constructor(
     private feathersService: FeathersService
   ) {}
 
   public onSubmit(d: any): any {
+    this.isFetching = true;
     this.feathersService.login(d.emailInput, d.passwordInput);
   }
 }
