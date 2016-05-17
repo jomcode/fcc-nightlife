@@ -63,8 +63,8 @@ class AppComponent implements OnInit, OnDestroy {
 
     // Checkin Subscription
     this.checkinSubscription = feathers.checkin$.subscribe(
-      (result: any) => console.log('checkinSubscription', result),
-      (error: any) => console.error('checkinSubscription', error)
+      (result: any) => { /* TODO handle success */ },
+      (error: any) => { /* TODO handle error */ }
     );
 
     // Signup Subscription
@@ -81,8 +81,7 @@ class AppComponent implements OnInit, OnDestroy {
 
     // Router Subscription
     this.routerChangeSubscription = router.changes.subscribe(
-      () => this.handleRouterChange(),
-      (error: any) => console.error('change error', error)
+      () => this.handleRouterChange()
     );
   }
 
