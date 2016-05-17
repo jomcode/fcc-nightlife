@@ -1,17 +1,6 @@
 <div>
-  <div>
     <form (ngSubmit)="onSubmit(signupForm.value)" #signupForm="ngForm">
-      <div>
-        <label for="usernameInput">Username</label>
-        <input
-          id="usernameInput"
-          type="text"
-          required
-          ngControl="usernameInput"
-        >
-      </div>
-
-      <div>
+      <div class="input-group">
         <label for="emailInput">Email</label>
         <input
           id="emailInput"
@@ -21,7 +10,7 @@
         >
       </div>
 
-      <div>
+      <div class="input-group">
         <label for="passwordInput">Password</label>
         <input
           id="passwordInput"
@@ -31,9 +20,16 @@
         >
       </div>
 
-      <div>
-        <button type="submit" [disabled]="!signupForm.form.valid">Signup</button>
+      <div class="form-footer">
+        <div class="footer-section">
+          <span *ngIf="isFetching">Signing up...</span>
+        </div>
+
+        <div class="footer-section">
+          <button type="submit" [disabled]="!signupForm.form.valid">
+            Signup
+          </button>
+        </div>
       </div>
     </form>
-  </div>
 </div>
