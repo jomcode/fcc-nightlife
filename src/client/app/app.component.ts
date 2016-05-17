@@ -3,7 +3,6 @@ import { Routes, Router } from '@angular/router';
 
 import { AppState } from './app.service';
 import { HomeComponent } from './home';
-import { BarDetailComponent } from './home/bardetail';
 import { SignupComponent } from './signup';
 import { LoginComponent } from './login';
 import { FeathersService } from './feathers';
@@ -23,10 +22,6 @@ import { FeathersService } from './feathers';
     component: HomeComponent
   },
   {
-    path: '/bars/:barId',
-    component: BarDetailComponent
-  },
-  {
     path: '/signup',
     component: SignupComponent
   },
@@ -36,7 +31,7 @@ import { FeathersService } from './feathers';
   }
 ])
 class AppComponent implements OnInit, OnDestroy {
-  public appName: string = 'Nightlife Coordination';
+  public appName: string = 'Nightlife';
 
   private barsSubscription: any;
   private detailSubscription: any;
@@ -72,7 +67,7 @@ class AppComponent implements OnInit, OnDestroy {
 
     // Signup Subscription
     this.signupSubscription = feathers.signup$.subscribe(
-      (result: any) => { console.log('signup', result); },
+      (result: any) => { /* TODO handle success */ },
       (error: any) => { /* TODO handle error */ }
     );
 

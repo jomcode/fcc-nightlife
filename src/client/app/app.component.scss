@@ -1,10 +1,42 @@
 @import '../_variables.scss';
+
 .app-header {
-  margin: 0 0 1em 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: 0 0 0 0;
+  padding: 0 1em 0 1em;
+  box-shadow: $small-shadow;
+
+  height: 50px;
+
+  .title {}
+
+  .links {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    a {
+      padding: 0 0 0 1em;
+      text-decoration: none;
+    }
+  }
 }
 
 .app-content {
-  margin: 0 0 1em 0;
+  /*
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  */
+
+  margin: 2em 0 0 0;
 }
 
-.app-footer {}
+.app-footer {
+  margin: 2em 0 0 0;
+}

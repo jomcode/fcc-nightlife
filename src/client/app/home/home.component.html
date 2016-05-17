@@ -1,9 +1,5 @@
 <div>
-  <sg-search
-    (submitHandler)="handleSearchSubmit($event);"
-  >
-  </sg-search>
-  <div>
-    <sg-barlist [bars]="appState.state.bars"></sg-barlist>
-  </div>
+  <sg-search (submitHandler)="handleSearchSubmit($event);"></sg-search>
+
+  <sg-barlist [bars]="appState.state.bars"></sg-barlist>
 </div>

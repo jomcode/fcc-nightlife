@@ -1,12 +1,17 @@
 <div>
-  <div>
-    <form (ngSubmit)="onSubmit(searchForm.value)" #searchForm="ngForm">
+  <form (ngSubmit)="onSubmit(searchForm.value)" #searchForm="ngForm">
+
+    <div>
       <input
-        type="text"
-        required
-        ngControl="queryInput"
+      type="text"
+      required
+      ngControl="queryInput"
+      placeholder="Enter a city to find bars near you..."
       >
-      <button type="submit" [disabled]="!searchForm.form.valid">Search</button>
-    </form>
-  </div>
+
+      <button type="submit" [disabled]="!searchForm.form.valid">
+        Search
+      </button>
+    </div>
+  </form>
 </div>
