@@ -4,4 +4,9 @@
   button {
     @extend .btn;
   }
+
+  label {
+    display: inline-block;
+    font-size: 1.1em;
+  }
 }

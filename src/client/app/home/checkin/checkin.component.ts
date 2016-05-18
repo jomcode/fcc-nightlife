@@ -11,6 +11,7 @@ import { FeathersService } from '../../feathers';
 })
 class CheckinComponent {
   @Input() private barId: any;
+  private isFetching: boolean = false;
 
   constructor(
     private feathersService: FeathersService

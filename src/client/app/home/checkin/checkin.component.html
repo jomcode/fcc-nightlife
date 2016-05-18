@@ -1,1 +1,2 @@
-<button (click)="checkin()">Check In</button>
+<button *ngIf="!isFetching" (click)="checkin()">Check In</button>
+<label *ngIf="isFetching">Checking in...</label>
