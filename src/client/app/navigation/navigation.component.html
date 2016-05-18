@@ -1,0 +1,23 @@
+<span class="title">{{appName}}</span>
+<nav class="links">
+  <a [routerLink]="['/']">Home</a>
+  <a
+    *ngIf="appState.state.credentials && !appState.state.credentials.user"
+    [routerLink]="['/signup']"
+  >
+    Signup
+  </a>
+  <a
+    *ngIf="appState.state.credentials && !appState.state.credentials.user"
+    [routerLink]="['/login']"
+  >
+    Login
+  </a>
+  <a
+    *ngIf="appState.state.credentials && appState.state.credentials.user"
+    href=""
+    (click) = "logout()"
+  >
+    Logout
+  </a>
+</nav>

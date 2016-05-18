@@ -5,12 +5,13 @@ import { AppState } from './app.service';
 import { HomeComponent } from './home';
 import { SignupComponent } from './signup';
 import { LoginComponent } from './login';
+import { NavigationComponent } from './navigation';
 import { FeathersService } from './feathers';
 
 import { mockData } from './feathers/mockdata';
 
 @Component({
-  directives: [],
+  directives: [ NavigationComponent ],
   providers: [ AppState, FeathersService ],
   selector: 'sg-app',
   styles: [
@@ -30,11 +31,13 @@ import { mockData } from './feathers/mockdata';
   {
     path: '/login',
     component: LoginComponent
+  },
+  {
+    path: '/logout',
+    component: HomeComponent
   }
 ])
 class AppComponent implements OnInit, OnDestroy {
-  public appName: string = 'Nightlife';
-
   private barsSubscription: any;
   private detailSubscription: any;
   private checkinSubscription: any;
@@ -69,13 +72,13 @@ class AppComponent implements OnInit, OnDestroy {
 
     // Signup Subscription
     this.signupSubscription = feathers.signup$.subscribe(
-      (result: any) => { /* TODO handle success */ },
+      (result: any) => this.handleSignup(result),
       (error: any) => { /* TODO handle error */ }
     );
 
     // Login Subscription
     this.loginSubscription = feathers.login$.subscribe(
-      (result: any) => { /* TODO handle success */ },
+      (result: any) => this.handleLogin(result),
       (error: any) => { /* TODO handle error */ }
     );
 
@@ -88,13 +91,8 @@ class AppComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     const { state }: any = this.appState;
 
-    const formatCredentials: any = (r: any) => Object.assign({}, {
-      token: r.token,
-      user: r.data
-    });
-
     this.feathers.authenticate()
-      .then((result: any) => state.credentials = formatCredentials(result))
+      .then((result: any) => this.setCredentials(result.token, result.data))
       .catch((e: any) => state.credentials = {});
 
     this.appState.state.bars = mockData.slice(0);
@@ -113,6 +111,19 @@ class AppComponent implements OnInit, OnDestroy {
     // const { router: { urlTree } }: any = this;
     // barId urlTree._root.children[0].children[0].value.segment
     // console.log('serialized urlTree', this.router.serializeUrl(urlTree));
+  }
+
+  private handleSignup(result: any): void {
+    this.router.navigate(['/login']);
+  }
+
+  private handleLogin(result: any): void {
+    this.setCredentials(this.feathers.getToken(), this.feathers.getUser());
+    this.router.navigate(['/']);
+  }
+
+  private setCredentials(token: any, user: any): void {
+    this.appState.state.credentials = Object.assign({}, { token, user });
   }
 }
 
