@@ -21,7 +21,8 @@ const mockData: any = [
         'French Quarter',
         'New Orleans, LA 70130'
       ]
-    }
+    },
+    checkins: []
   },
   {
     'rating': 4,
@@ -45,7 +46,8 @@ const mockData: any = [
         'French Quarter',
         'New Orleans, LA 70116'
       ]
-    }
+    },
+    checkins: [{}, {}]
   },
   {
     'rating': 4.5,
@@ -69,7 +71,8 @@ const mockData: any = [
         'Bywater',
         'New Orleans, LA 70117'
       ]
-    }
+    },
+    checkins: [{ id: 1, userId: 1 }, {}, {}, {}]
   }
 ];
 

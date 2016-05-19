@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+import { AppState } from '../../app.service';
 import { FeathersService } from '../../feathers';
 
 @Component({
@@ -11,13 +12,16 @@ import { FeathersService } from '../../feathers';
 })
 class CheckinComponent {
   @Input() private barId: any;
-  private isFetching: boolean = false;
+  // private isFetching: boolean = false;
+  // private isCheckedIn: boolean = false;
 
   constructor(
-    private feathersService: FeathersService
+    private feathersService: FeathersService,
+    private appState: AppState
   ) {}
 
   public checkin(): any {
+    console.log('barId', this.barId);
     this.feathersService.checkin(this.barId);
   }
 }

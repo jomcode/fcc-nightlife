@@ -9,7 +9,7 @@ module.exports = function() {
   const options = {
     Model: checkin(app.get('sequelize')),
     paginate: {
-      default: 5,
+      default: 25,
       max: 25
     }
   };
