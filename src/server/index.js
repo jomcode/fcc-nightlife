@@ -5,5 +5,5 @@ const port = app.get('port');
 const server = app.listen(port);
 
 server.on('listening', () =>
-  console.log(`application listening on ${host}:${port}`)
+  console.log(`[fcc-nightlife] listening on ${host}:${port}`)
 );
