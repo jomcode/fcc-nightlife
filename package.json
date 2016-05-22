@@ -21,7 +21,7 @@
     "tdd:client:hot": "better-npm-run tdd:client:hot",
     "dev:server": "better-npm-run dev:server",
     "dev:hot": "better-npm-run dev:hot",
-    "start": "better-npm-run start"
+    "start": "node src/server/index.js"
   },
   "betterScripts": {
     "dev:client": {
@@ -73,12 +73,6 @@
     },
     "dev:hot": {
       "command": "concurrent -k \"npm run dev:client:hot\" \"npm run dev:server\""
-    },
-    "start": {
-      "command": "node src/server/index.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
     }
   },
   "keywords": [],
