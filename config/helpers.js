@@ -17,7 +17,7 @@ const isHot = process.env.HMR === 'enabled';
 
 function getMetadata() {
   return {
-    title: 'Angular2 App',
+    title: 'FCC Nightlife',
     baseUrl: '/'
   };
 }

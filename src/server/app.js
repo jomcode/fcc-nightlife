@@ -16,13 +16,6 @@ const app = feathers();
 
 app.configure(configuration(path.join(__dirname)));
 
-const devLogger = (req, res, next) => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`${req.method}: ${req.url}`);
-  }
-  next();
-};
-
 app.use(compress())
   .options('*', cors())
   .use(cors())
@@ -30,7 +23,6 @@ app.use(compress())
   .use('/', serveStatic(app.get('public')))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .use(devLogger)
   .configure(hooks())
   .configure(rest())
   .configure(services)

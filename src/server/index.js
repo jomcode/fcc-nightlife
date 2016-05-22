@@ -1,6 +1,6 @@
 const app = require('./app');
 const host = app.get('host');
-const port = app.get('port');
+const port = process.env.PORT || app.get('port');
 
 const server = app.listen(port);
 
