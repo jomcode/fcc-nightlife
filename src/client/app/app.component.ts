@@ -8,8 +8,6 @@ import { LoginComponent } from './login';
 import { NavigationComponent } from './navigation';
 import { FeathersService } from './feathers';
 
-import { mockData } from './feathers/mockdata';
-
 @Component({
   directives: [ NavigationComponent ],
   providers: [ AppState, FeathersService ],
@@ -41,6 +39,7 @@ class AppComponent implements OnInit, OnDestroy {
   private barsSubscription: any;
   private detailSubscription: any;
   private checkinSubscription: any;
+  private checkoutSubscription: any;
   private signupSubscription: any;
   private loginSubscription: any;
   private routerChangeSubscription: any;
@@ -66,7 +65,13 @@ class AppComponent implements OnInit, OnDestroy {
 
     // Checkin Subscription
     this.checkinSubscription = feathers.checkin$.subscribe(
-      (result: any) => { /* TODO handle success */ },
+      (result: any) => this.handleCheckin(result),
+      (error: any) => { /* TODO handle error */ }
+    );
+
+    // Checkout Subscription
+    this.checkoutSubscription = feathers.checkout$.subscribe(
+      (result: any) => this.handleCheckout(result),
       (error: any) => { /* TODO handle error */ }
     );
 
@@ -94,14 +99,13 @@ class AppComponent implements OnInit, OnDestroy {
     this.feathers.authenticate()
       .then((result: any) => this.setCredentials(result.token, result.data))
       .catch((e: any) => state.credentials = {});
-
-    this.appState.state.bars = mockData.slice(0);
   }
 
   public ngOnDestroy(): void {
     this.barsSubscription.unsubscribe();
     this.detailSubscription.unsubscribe();
     this.checkinSubscription.unsubscribe();
+    this.checkoutSubscription.unsubscribe();
     this.signupSubscription.unsubscribe();
     this.loginSubscription.unsubscribe();
     this.routerChangeSubscription.unsubscribe();
@@ -120,6 +124,38 @@ class AppComponent implements OnInit, OnDestroy {
   private handleLogin(result: any): void {
     this.setCredentials(this.feathers.getToken(), this.feathers.getUser());
     this.router.navigate(['/']);
+  }
+
+  private handleCheckin(result: any): void {
+    const { state }: any = this.appState;
+
+    const updated: any = state.bars.map((b: any) => {
+      if (b.id === result.barId) {
+        return Object.assign({}, b, { checkins: [...b.checkins, result] });
+      }
+      return Object.assign({}, b);
+    });
+    state.bars = updated.slice(0);
+  }
+
+  private handleCheckout(result: any): void {
+    const { state }: any = this.appState;
+
+    const updated: any = state.bars.map((b: any) => {
+      return Object.assign({}, b, {
+        checkins: b.checkins.filter((c: any) => {
+          let temp: boolean = true;
+          result.forEach((r: any) => {
+            if (r.barId === b.id) {
+              if (state.credentials.user.id === r.userId) temp = false;
+            }
+          });
+          return temp;
+        })
+      });
+    });
+
+    state.bars = updated.slice(0);
   }
 
   private setCredentials(token: any, user: any): void {

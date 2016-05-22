@@ -32,6 +32,9 @@ class FeathersService {
   private checkinSource: any = new Subject();
   public checkin$: any = this.checkinSource.asObservable();
 
+  private checkoutSource: any = new Subject();
+  public checkout$: any = this.checkoutSource.asObservable();
+
   constructor() {
     this.app = feathers()
       .configure(rest(rootUrl).superagent(superagent))
@@ -83,19 +86,17 @@ class FeathersService {
   public checkin(barId: any): any {
     const checkin: any = this.app.service('checkin');
 
-    const handleResult: any = (result: any) => {
-      checkin.create({ barId, userId: this.app.get('user').id })
-      .then((r: any) => this.checkinSource.next(r))
-      .catch((e: any) => console.error('create error', e));
-    };
+    checkin.create({ barId, userId: this.app.get('user').id })
+    .then((r: any) => this.checkinSource.next(r))
+    .catch((error: any) => this.handleError(error));
+  }
 
-    const handleError: any = (error: any) => {
-      console.error('checkin error', error);
-    };
+  public checkout(userId: any, barId: any): any {
+    const checkin: any = this.app.service('checkin');
 
-    this.app.authenticate()
-    .then((result: any) => handleResult(result))
-    .catch((error: any) => handleError(error));
+    checkin.remove(undefined, { query: { userId, barId } })
+    .then((result: any) => this.checkoutSource.next(result))
+    .catch((error: any) => this.handleError(error));
   }
 
   public getUser(): any {
