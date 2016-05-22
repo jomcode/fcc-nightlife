@@ -6,12 +6,6 @@
 /typings/
 /tsd_typings/
 
-# Output directories & files
-/dist/**
-!dist/.gitkeep
-/build/**
-.webpack.json
-
 # Dependency directories
 /node_modules
 /jspm_packages
