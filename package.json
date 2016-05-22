@@ -75,7 +75,7 @@
       "command": "concurrent -k \"npm run dev:client:hot\" \"npm run dev:server\""
     },
     "start": {
-      "command": "npm run build:client && node src/server/index.js",
+      "command": "node src/server/index.js",
       "env": {
         "NODE_ENV": "production"
       }
